@@ -21,5 +21,4 @@ class CarDataSource(private val carDao: CarDao) {
         Dispatchers.IO.apply {
             carDao.updateCar(isSold,id)
         }
-    /
 }
