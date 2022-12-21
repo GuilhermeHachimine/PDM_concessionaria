@@ -17,8 +17,9 @@ class CarDataSource(private val carDao: CarDao) {
         }
     }
 
-    suspend fun updateCar(isSold:Boolean,id:Long) {
+    suspend fun updateCar(isSold: Boolean, id: Long) {
         Dispatchers.IO.apply {
-            carDao.updateCar(isSold,id)
+            carDao.updateCar(isSold, id)
         }
+    }
 }

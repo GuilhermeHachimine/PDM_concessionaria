@@ -17,7 +17,7 @@ import com.example.concessionaria.ui.theme.ConcessionariaTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Graph.provide(this)
+        //Graph.provide(this)
         setContent {
             ConcessionariaTheme {
                 // A surface container using the 'background' color from the theme
@@ -32,9 +32,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
-
-
+/*
 @Composable
 fun Greeting(name: String) {
     Text(text = "Hello $name!")
@@ -46,4 +44,4 @@ fun DefaultPreview() {
     ConcessionariaTheme {
         Greeting("Android")
     }
-}
+}*/
