@@ -2,7 +2,6 @@ package com.example.concessionaria.ui.main
 
 import androidx.compose.runtime.*
 import androidx.compose.ui.geometry.Size
-import com.example.concessionaria.ExposedDropDownMenuType
 import com.example.concessionaria.R
 
 class ExposedDropMenuStateHolderTipoCarro {
