@@ -1,11 +1,15 @@
+@file:OptIn(ExperimentalFoundationApi::class)
+
 package com.example.concessionaria.ui.main
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -26,6 +30,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import com.example.concessionaria.ui.theme.Shapes
 
+@ExperimentalFoundationApi
 @ExperimentalMaterialApi
 @Composable
 fun ExpandableCard(
@@ -45,14 +50,17 @@ fun ExpandableCard(
     val rotationState by animateFloatAsState(
         targetValue = if (expandedState) 180f else 0f
     )
+    var ativo by remember {
+        mutableStateOf(status) }
+
+
     val sb = StringBuilder()
     val textoFinal: String
     val cor: Color
     val linha: TextDecoration
     val sold: String
 
-
-    if (status){
+    if (status && ativo){
         textoFinal = sb.append(description).append("This Vehicle is avaiable").toString()
         cor = Color.Green
         linha = TextDecoration.None
@@ -67,21 +75,28 @@ fun ExpandableCard(
 
 
     Card(
-        modifier = Modifier.border(0.5.dp,Color.Gray)
+        modifier = Modifier
+            .border(0.5.dp, Color.Gray)
             .fillMaxWidth()
             .animateContentSize(
                 animationSpec = tween(
                     durationMillis = 300,
                     easing = LinearOutSlowInEasing
                 )
+            ).combinedClickable(
+                onClick = { expandedState = !expandedState },
+                onLongClick = { ativo = !ativo }
+
             ),
-        shape = shape,
-        onClick = {
-            expandedState = !expandedState
-        }
+            shape = shape
+
+
     ) {
         Box(
-            modifier = Modifier.background(cor).padding(9.dp).height(1.dp)
+            modifier = Modifier
+                .background(cor)
+                .padding(9.dp)
+                .height(1.dp)
 
         )
         Column(
@@ -115,15 +130,16 @@ fun ExpandableCard(
                     modifier = Modifier
                         .weight(1f)
                         .alpha(ContentAlpha.medium)
-                        .rotate(rotationState),
-                    onClick = {
-                        expandedState = !expandedState
-                    }) {
+                        .rotate(rotationState)
+                        .combinedClickable(
+                            onClick = {},
+                            onLongClick = { ativo = !ativo }),
+                        onClick = {expandedState = !expandedState }
+                ){
                     Icon(
                         imageVector = Icons.Default.ArrowDropDown,
                         contentDescription = "Drop-Down Arrow"
-                    )
-                }
+                    )}
             }
             if (expandedState) {
                 Text(
