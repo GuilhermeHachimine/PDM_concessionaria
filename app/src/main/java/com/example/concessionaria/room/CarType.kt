@@ -1,4 +1,4 @@
-package com.example.concessionaria
+package com.example.concessionaria.room
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

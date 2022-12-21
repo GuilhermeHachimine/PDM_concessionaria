@@ -17,6 +17,7 @@ import com.example.concessionaria.ui.theme.ConcessionariaTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Graph.provide(this)
         setContent {
             ConcessionariaTheme {
                 // A surface container using the 'background' color from the theme
