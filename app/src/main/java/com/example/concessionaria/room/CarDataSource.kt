@@ -1,6 +1,5 @@
 package com.example.concessionaria.room
 
-import com.example.concessionaria.CarType
 import kotlinx.coroutines.Dispatchers
 
 class CarDataSource(private val carDao: CarDao) {
@@ -20,7 +19,7 @@ class CarDataSource(private val carDao: CarDao) {
 
     suspend fun updateCar(isSold:Boolean,id:Long) {
         Dispatchers.IO.apply {
-            carDao.delete(carType.uid)
+            carDao.updateCar(isSold,id)
         }
     }
 }
