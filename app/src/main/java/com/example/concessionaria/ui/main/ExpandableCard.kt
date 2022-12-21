@@ -4,10 +4,8 @@ import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
@@ -16,8 +14,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
@@ -46,10 +46,21 @@ fun ExpandableCard(
     )
     val sb = StringBuilder()
     val textoFinal: String
+    val cor: Color
+    val linha: TextDecoration
+    val sold: String
+
+
     if (status){
         textoFinal = sb.append(description).append("This Vehicle is avaiable").toString()
+        cor = Color.Green
+        linha = TextDecoration.None
+        sold = ""
     }else{
         textoFinal = sb.append(description).append("This Vehicle is sold").toString()
+        cor = Color.Red
+        linha = TextDecoration.LineThrough
+        sold = "Sold"
     }
 
 
@@ -68,6 +79,10 @@ fun ExpandableCard(
             expandedState = !expandedState
         }
     ) {
+        Box(
+            modifier = Modifier.background(cor).padding(9.dp).height(1.dp)
+
+        )
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -83,7 +98,17 @@ fun ExpandableCard(
                     fontSize = titleFontSize,
                     fontWeight = titleFontWeight,
                     maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
+                    overflow = TextOverflow.Ellipsis,
+                    textDecoration = linha
+                )
+                Text(
+                    modifier = Modifier
+                        .weight(1f),
+                    text = sold,
+                    fontSize = descriptionFontSize,
+                    fontWeight = descriptionFontWeight,
+                    maxLines = descriptionMaxLines,
+                    overflow = TextOverflow.Ellipsis,
                 )
                 IconButton(
                     modifier = Modifier
