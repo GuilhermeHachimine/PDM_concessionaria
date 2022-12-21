@@ -9,30 +9,32 @@ import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
 
 @Composable
 fun MainFields(){
 
     val stateHolderTipoCarro = rememberExposedDropMenuStateHolderTipoCarro()
+    Column(modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.SpaceEvenly){
+                textFieldModel()
 
-    Column(modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
+                ExposedDropDownMenuType(stateHolder = stateHolderTipoCarro)
 
-        textFieldModel()
+                textFieldPrice()
 
-        ExposedDropDownMenuType(stateHolder = stateHolderTipoCarro)
+                Button(onClick = { /*TODO*/ }) {
+                    Text(text = "Submit")
+                }
+            }
 
-        textFieldPrice()
-
-    }
-
-}
+        }
 
 @Composable
 fun textFieldModel(){
@@ -105,7 +107,6 @@ fun textFieldPrice(){
     }
     OutlinedTextField(value = textPrice, onValueChange = {
             newTextPrice -> textPrice = newTextPrice
-
     },
         label = { Text(text = "Price") },
         singleLine = true,
@@ -114,6 +115,4 @@ fun textFieldPrice(){
 
         )
     )
-
-
 }

@@ -5,6 +5,7 @@ import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -66,7 +67,7 @@ fun ExpandableCard(
 
 
     Card(
-        modifier = Modifier
+        modifier = Modifier.border(0.5.dp,Color.Gray)
             .fillMaxWidth()
             .animateContentSize(
                 animationSpec = tween(
@@ -139,7 +140,7 @@ fun ExpandableCard(
 
 
 // Exemplo de como puxar
-@ExperimentalMaterialApi
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 @Preview
 fun ExpandableCardPreview() {
